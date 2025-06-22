@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>วิธีเคลียร์พื้นที่ไดรฟ์ C อย่างปลอดภัย</title>
+  <style>
+    body { font-family: sans-serif; line-height: 1.8; padding: 20px; background: #f8f9fa; color: #333; }
+    h1 { color: #2c3e50; }
+    h2 { color: #2980b9; margin-top: 1.5em; }
+    code, pre { background: #eee; padding: 4px 6px; border-radius: 4px; }
+    ul { padding-left: 1.2em; }
+    .box { background: #fff; border: 1px solid #ddd; padding: 15px; border-radius: 8px; margin-bottom: 20px; }
+    a { color: #2980b9; text-decoration: none; }
+    a:hover { text-decoration: underline; }
+  </style>
+</head>
+<body>
+  <h1>วิธีเคลียร์พื้นที่ไดรฟ์ C อย่างปลอดภัย (Windows)</h1>
+
+  <div class="box">
+    <h2>1. ลบ Temporary Files</h2>
+    <ul>
+      <li>กด <code>Win + R</code> พิมพ์ <code>temp</code> → ลบทั้งหมด</li>
+      <li>กด <code>Win + R</code> พิมพ์ <code>%temp%</code> → ลบทั้งหมด</li>
+    </ul>
+  </div>
+
+  <div class="box">
+    <h2>2. ใช้ Disk Cleanup</h2>
+    <ul>
+      <li>ค้นหา "Disk Cleanup" → เลือก Drive C</li>
+      <li>คลิก “Clean up system files” → เลือกรายการเช่น:</li>
+      <ul>
+        <li>Windows Update Cleanup</li>
+        <li>Previous Windows installations</li>
+        <li>Temporary files</li>
+      </ul>
+    </ul>
+  </div>
+
+  <div class="box">
+    <h2>3. ลบไฟล์ Prefetch</h2>
+    <ul>
+      <li>กด <code>Win + R</code> → พิมพ์ <code>prefetch</code> → ลบทั้งหมด</li>
+    </ul>
+  </div>
+
+  <div class="box">
+    <h2>4. ลบ System Restore Point เก่า</h2>
+    <ul>
+      <li>ไปที่ Control Panel → System → System Protection → Configure</li>
+      <li>เลือก “Delete” หรือจำกัดขนาดพื้นที่</li>
+    </ul>
+  </div>
+
+  <div class="box">
+    <h2>5. ลบ Windows.old</h2>
+    <ul>
+      <li>ใช้ Disk Cleanup → “Clean up system files” → เลือก “Previous Windows installations”</li>
+    </ul>
+  </div>
+
+  <div class="box">
+    <h2>6. ลบไฟล์ Download ของ Windows Update</h2>
+    <pre>net stop wuauserv
+net stop bits
+del /s /q /f %windir%\SoftwareDistribution\Download\*
+net start bits
+net start wuauserv</pre>
+  </div>
+
+  <div class="box">
+    <h2>7. ลบ Log และ Minidump</h2>
+    <ul>
+      <li><code>%SystemRoot%\Minidump</code></li>
+      <li><code>%SystemRoot%\MEMORY.DMP</code></li>
+      <li><code>%SystemRoot%\Logs</code></li>
+    </ul>
+  </div>
+
+  <div class="box">
+    <h2>8. ล้าง Recycle Bin</h2>
+    <ul><li>คลิกขวาที่ถังขยะ → Empty Recycle Bin</li></ul>
+  </div>
+
+  <div class="box">
+    <h2>9. ปิด Hibernate (ถ้าไม่ใช้)</h2>
+    <pre>powercfg -h off</pre>
+    <p>ประหยัดพื้นที่ได้หลาย GB</p>
+  </div>
+
+  <div class="box">
+    <h2>10. ใช้ TreeSize Free เพื่อดูว่าโฟลเดอร์ใดใช้พื้นที่มาก</h2>
+    <ul>
+      <li>ดาวน์โหลดที่: <a href="https://www.jam-software.com/treesize_free" target="_blank">https://www.jam-software.com/treesize_free</a></li>
+      <li>เปิด TreeSize แบบ Run as Administrator เพื่อดูข้อมูลครบ</li>
+    </ul>
+  </div>
+
+  <footer style="margin-top: 40px; font-size: 0.9em; color: #777;">
+    จัดทำโดย ChatGPT | ข้อมูลสำหรับผู้ใช้ Windows | อัปเดตล่าสุด: มิถุนายน 2025
+  </footer>
+</body>
+</html>
